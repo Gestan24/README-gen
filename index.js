@@ -1,22 +1,30 @@
+const generateMarkdown = require('./utils/generateMarkdown.js');
+
+const { writeFile } = require('./utils/writeInput.js');
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 
+const fs = require('fs');
+
+
 // TODO: Create an array of questions for user input
-const promptQuestions = () => {
-    
+const promptQuestions = readMeData => {
+
+    readMeData = [];
+
     return inquirer.prompt([
 
         {
 
             type: 'input',
 
-            name: 'projectTitle',
+            name: 'title',
 
             message: 'What is the title of your project?',
-            
-            validate: projectInput => {
 
-                if (projectInput) {
+            validate: titleInput => {
+
+                if (titleInput) {
 
                     return true
 
@@ -27,7 +35,7 @@ const promptQuestions = () => {
                     return false;
 
                 }
-            } 
+            }
         },
 
         {
@@ -58,7 +66,7 @@ const promptQuestions = () => {
 
         {
 
-            
+
             type: 'input',
 
             name: 'installation',
@@ -83,7 +91,7 @@ const promptQuestions = () => {
         },
 
         {
-            
+
             type: 'input',
 
             name: 'usage',
@@ -135,14 +143,14 @@ const promptQuestions = () => {
         },
 
         {
-            
+
             type: 'list',
 
             name: 'license',
 
             message: 'What license did you use?',
 
-            choices: ['MIT License', 'Apache License 2.0', 'GNU Public License', 'Boost Software License 1.0', 'N/A'],
+            choices: ['mit', 'apache-2.0', 'gpl-3.0', 'bsl-1.0', 'N/A'],
 
             validate: license => {
 
@@ -158,7 +166,7 @@ const promptQuestions = () => {
 
                 }
 
-            } 
+            }
 
         },
 
@@ -166,7 +174,7 @@ const promptQuestions = () => {
 
             type: 'input',
 
-            name: 'github uername',
+            name: 'github',
 
             message: 'What is your Github username?',
 
@@ -180,7 +188,7 @@ const promptQuestions = () => {
 
                     console.log('Please enter your Github username!');
 
-                    return false ;
+                    return false;
 
                 }
 
@@ -189,7 +197,7 @@ const promptQuestions = () => {
         },
 
         {
-            
+
             type: 'input',
 
             name: 'email',
@@ -214,14 +222,43 @@ const promptQuestions = () => {
 
         }
 
-    ]);  
-} 
+    ]). then( projectData => {
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+     readMeData.push(projectData);
+
+     return readMeData;
+    
+    });
+
+    
+};
+
+
 
 // TODO: Create a function to initialize app
-promptQuestions();
+promptQuestions()
 
-// Function call to initialize app
-// init();
+.then(readMeData => {
+
+    return generateMarkdown(readMeData);
+
+})
+
+.then(pageREADME => {
+
+    return writeFile(pageREADME);
+
+})
+
+.then(writeFileResponse => {
+
+    console.log(writeFileResponse);
+    
+})
+
+.catch(err => {
+
+    console.log(err);
+
+});
+
