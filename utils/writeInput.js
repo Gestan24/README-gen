@@ -5,7 +5,7 @@ const writeFile = fileContent => {
 
     return new Promise ((resolve, reject) => {
 
-        fs.writeFile('./README.md', fileContent, err  => {
+        fs.writeFile('./generated-README.md', fileContent, err  => {
     
             if (err) {
     
