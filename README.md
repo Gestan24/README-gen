@@ -1,55 +1,26 @@
+# README Generator
 
-  
-  # sdfghfhgjfwe
-  
-   
-  
-  [!(license: mit](https://img.shields.io/badge/license-mit-green.svg)
-  
-  
-        
-        
-  ## **Description**
-  ffghgfhwf
-        
-  ## **Table of Contents**
-        
-  * [Installation](#installation)
-        
-  * [Usage](#Usage)
-        
-  * [Credits](#Credits)
-        
-  * [License](#License)
-        
-  * [Questions](#Questions)
-        
-  =============
-        
-  ## **Installation** 
-  fjfhjfhe
-        
-  ## **Usage**
-  fwfefwfw
-        
-  
-  
-  
-  
-  
-  ## **License**
-  This project is licensed under the mit license
-  
-  
-  
-  
-  https://choosealicense.com/licenses/mit/
-  
-  
-  
-  ## **Questions**
-  *Contact Me!*
-  **Github**: github.com/gestan24
-  **Email**: gee@yahoo.com
-  
-  
+
+## Intent
+
+Allows user's to generate README files with their own input, without the hassle of making an actual layout.
+
+## Installation
+
+You'll only need a few things for this app. That would be npm and inquirer.
+
+
+## Built With
+
+* JS
+
+* NodeJS
+
+# App Example
+
+![generator](./utils/images/readme_gen-screenshot.png)
+
+
+## Demonstration Link
+
+![demonstration](https://drive.google.com/file/d/1VqfS7JSZcp76IRpS_W3hZxI7GNkygbuc/view)
