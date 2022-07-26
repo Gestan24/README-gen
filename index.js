@@ -10,9 +10,12 @@ const fs = require('fs');
 // TODO: Create an array of questions for user input
 const promptQuestions = readMeData => {
 
-    readMeData = [];
+    readMEData = [];
+
+    
 
     return inquirer.prompt([
+
 
         {
 
@@ -118,27 +121,25 @@ const promptQuestions = readMeData => {
 
         {
 
+            type: 'confirm',
+
+            name: 'confirmCredits',
+
+            message: 'Were there other users, videos, or websites that helped you create this project?',
+
+            default: true
+
+        },
+
+        {
+
             type: 'input',
 
             name: 'credits',
 
-            message: 'Were there other users, videos, or websites that helped you create this project? (If website, include url)',
+            message: 'Who or what helped you with this project? (link website if needed)',
 
-            validate: creditsInput => {
-
-                if (creditsInput) {
-
-                    return true;
-
-                } else {
-
-                    console.log('Please enter credits! If you do not have any credit to give then type "N/A".')
-
-                    return false;
-
-                }
-
-            }
+            when: ({ confirmCredits }) => confirmCredits
 
         },
 
@@ -222,13 +223,7 @@ const promptQuestions = readMeData => {
 
         }
 
-    ]). then( projectData => {
-
-     readMeData.push(projectData);
-
-     return readMeData;
-    
-    });
+    ]). then( readMeData);
 
     
 };
@@ -236,29 +231,30 @@ const promptQuestions = readMeData => {
 
 
 // TODO: Create a function to initialize app
+
 promptQuestions()
 
-.then(readMeData => {
+    .then(readMeData => {
+        
+        return generateMarkdown(readMeData);
 
-    return generateMarkdown(readMeData);
-
-})
-
-.then(pageREADME => {
-
-    return writeFile(pageREADME);
-
-})
-
-.then(writeFileResponse => {
-
-    console.log(writeFileResponse);
+    })
     
-})
+    .then(pageREADME => {
+        
+        return writeFile(pageREADME);
+    
+    })
+    
+    .then(writeFileResponse => {
+        
+        console.log(writeFileResponse);
+    
+    })
 
-.catch(err => {
+    .catch(err => {
+        
+        console.log(err);
 
-    console.log(err);
-
-});
+    });
 

@@ -53,6 +53,23 @@ function renderLicenseSection(license) {
 
 }
 
+function renderCreditSection(credits) {
+
+  if (!credits) {
+
+    return '';
+
+  }
+
+  return `
+
+  ## **Credits**
+  ${credits}
+  
+  `;
+
+}
+
 // TODO: Create a function to generate markdown for README
 // function generateMarkdown(data) {
 //   return `# ${data.title}
@@ -62,17 +79,17 @@ function renderLicenseSection(license) {
 
 module.exports = templateData => {
 
-  const { license, credits, ...readMe } = templateData;
+  const { license, credits, ...info } = templateData;
 
   return `
   
-  # ${readMe.title}
+  # ${info.title}
   
   ${renderLicenseBadge(license)}
         
         
   ## **Description**
-  ${readMe.description}
+  ${info.description}
         
   ## **Table of Contents**
         
@@ -84,26 +101,25 @@ module.exports = templateData => {
         
   * [License](#License)
         
-  * [Questions](Questions)
+  * [Questions](#Questions)
         
   =============
         
   ## **Installation** 
-  ${readMe.installation}
+  ${info.installation}
         
   ## **Usage**
-  ${readMe.usage}
+  ${info.usage}
         
-  ## **Credits**
-  ${credits}
+  ${renderCreditSection(credits)}
   
   ${renderLicenseSection(license)}
   ${renderLicenseLink(license)}
   
   ## **Questions**
-  *Contact Me!
-  **Github: github.com/${readMe.github}
-  **Email: ${readMe.email}
+  *Contact Me!*
+  **Github**: github.com/${info.github}
+  **Email**: ${info.email}
   
   `;
 }
