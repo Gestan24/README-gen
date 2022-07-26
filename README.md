@@ -23,4 +23,4 @@ You'll only need a few things for this app. That would be npm and inquirer.
 
 ## Demonstration Link
 
-![demonstration](https://drive.google.com/file/d/1VqfS7JSZcp76IRpS_W3hZxI7GNkygbuc/view)
+[demonstration](https://drive.google.com/file/d/1VqfS7JSZcp76IRpS_W3hZxI7GNkygbuc/view)
